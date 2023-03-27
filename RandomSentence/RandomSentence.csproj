@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>Random sentence</Title>
+    <Version>0.1</Version>
+    <Authors>Kalandor01</Authors>
+    <Copyright>MIT</Copyright>
+    <PackageProjectUrl>https://github.com/Kalandor01/RandomSentence_CSharp</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Kalandor01/RandomSentence_CSharp</RepositoryUrl>
+    <PackageTags>console</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Description>- test class</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Windows.Extensions" Version="7.0.0" />
+  </ItemGroup>
+
+</Project>
