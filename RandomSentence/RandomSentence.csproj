@@ -6,15 +6,19 @@
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>Random sentence</Title>
-    <Version>1.1</Version>
+    <Version>1.1.1</Version>
     <Authors>Kalandor01</Authors>
     <Copyright>MIT</Copyright>
     <PackageProjectUrl>https://github.com/Kalandor01/RandomSentence_CSharp</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Kalandor01/RandomSentence_CSharp</RepositoryUrl>
     <PackageTags>console</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Description>- merged sound into an object
-- set a lot of variables to public for convenience</Description>
+    <Description>This module can generate sentances with a random length from a range of words, or just a bunch of random letters.
+It also contains an object for writing text out letter by letter at a specifiable speed and with a custom sound.
+
+WARNING
+For sounds System.Media.SoundPlayer is used, witch is WINDOWS ONLY.
+Playing sounds, not on Windows will result in a NotSupportedException.</Description>
   </PropertyGroup>
 
   <ItemGroup>
