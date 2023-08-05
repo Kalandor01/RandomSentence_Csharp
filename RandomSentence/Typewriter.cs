@@ -1,5 +1,4 @@
-﻿using System.Media;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 
 namespace RandomSentence
 {
@@ -17,9 +16,9 @@ namespace RandomSentence
         /// <summary>
         /// Controlls how many millisecond it should wait between writing out letters (or how long it should take to write out the text).
         /// </summary>
-        public double delay;
+        public int delay;
         /// <summary>
-        /// If false, <c>delay</c> is how many seconds it should take to write out the entire text.
+        /// If false, <c>delay</c> is how long it should take to write out the entire text.
         /// </summary>
         public bool isDelayPerLetter;
         /// <summary>
@@ -49,7 +48,7 @@ namespace RandomSentence
         /// <param name="sound"><inheritdoc cref="sound" path="//summary"/></param>
         /// <param name="throwExeption"><inheritdoc cref="throwExeption" path="//summary"/></param>
         /// <exception cref="PlatformNotSupportedException">Exeption thrown if the OS isn't Windows, and <c>throwExeption</c> is true.</exception>
-        public Typewriter(string text, double delay = 4, bool isDelayPerLetter = true, RSSoundPlayer? soundBegin = null, RSSoundPlayer? sound = null, bool throwExeption = false)
+        public Typewriter(string text, int delay = 4, bool isDelayPerLetter = true, RSSoundPlayer? soundBegin = null, RSSoundPlayer? sound = null, bool throwExeption = false)
         {
             if (
                 !RuntimeInformation.IsOSPlatform(OSPlatform.Windows) &&
@@ -92,11 +91,13 @@ namespace RandomSentence
                     soundError = true;
                 }
             }
+
             // begin sound
             if (soundBegin is not null && !soundError)
             {
                 soundBegin.Play();
             }
+
             // typewriter
             for (var x = 0; x < text.Length; x++)
             {
@@ -108,14 +109,15 @@ namespace RandomSentence
                     {
                         sound.Play();
                     }
+
                     // delay type
                     if (isDelayPerLetter)
                     {
-                        Thread.Sleep((int)delay);
+                        Thread.Sleep(delay);
                     }
                     else
                     {
-                        Thread.Sleep((int)(delay / text.Length * 1000));
+                        Thread.Sleep(delay / text.Length);
                     }
                 }
             }

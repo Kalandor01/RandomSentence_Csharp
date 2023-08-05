@@ -16,20 +16,26 @@ namespace RandomSentence
         public bool wait;
         #endregion
 
-        #region Public properties
+        #region Private fields
+        /// <summary>
+        /// The sound player.
+        /// </summary>
+        private SoundPlayer _soundPlayer;
         /// <summary>
         /// The path to the sound.
         /// </summary>
-        public string SoundPath
-        {
-            get { return soundPath; }
-            set => SetSound(value);
-        }
+        private string _soundPath;
         #endregion
 
-        #region Private fields
-        private SoundPlayer sound;
-        private string soundPath;
+        #region Public properties
+        /// <summary>
+        /// <inheritdoc cref="_soundPath" path="//summary"/>
+        /// </summary>
+        public string SoundPath
+        {
+            get => _soundPath;
+            set => SetSound(value);
+        }
         #endregion
 
         #region Constructors
@@ -40,13 +46,13 @@ namespace RandomSentence
         /// <param name="wait"><inheritdoc cref="wait" path="//summary"/></param>
         /// <exception cref="ArgumentException">Exeption thrown if the file doesn't exist or it's not a .wav file.</exception>
         /// <exception cref="PlatformNotSupportedException">Exeption thrown if the OS isn't Windows.</exception>
-        public RSSoundPlayer(string soundPath, bool wait=false)
+        public RSSoundPlayer(string soundPath, bool wait = false)
         {
             if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
                 throw new PlatformNotSupportedException("Sounds can only be played os Windows.");
             }
-            SetSound(soundPath);
+            SoundPath = soundPath;
             this.wait = wait;
         }
         #endregion
@@ -58,13 +64,13 @@ namespace RandomSentence
         /// <exception cref="PlatformNotSupportedException">Exeption thrown if the OS isn't Windows.</exception>
         public void Play()
         {
-            if (this.wait)
+            if (wait)
             {
-                sound.PlaySync();
+                _soundPlayer.PlaySync();
             }
             else
             {
-                sound.Play();
+                _soundPlayer.Play();
             }
         }
         #endregion
@@ -80,8 +86,8 @@ namespace RandomSentence
         {
             if (File.Exists(soundPath) && Path.GetExtension(soundPath) != "wav")
             {
-                this.soundPath = soundPath;
-                sound = new SoundPlayer(this.soundPath);
+                _soundPath = soundPath;
+                _soundPlayer = new SoundPlayer(_soundPath);
             }
             else
             {
