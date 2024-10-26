@@ -1,6 +1,6 @@
-﻿using System.Text;
-using NPrng;
+﻿using NPrng;
 using NPrng.Generators;
+using System.Text;
 
 namespace RandomSentence
 {
@@ -13,43 +13,86 @@ namespace RandomSentence
         /// <summary>
         /// The posible words of type <c>NOUN</c>.
         /// </summary>
-        public static string[] W_NOUN = { " this", " that", " car", " cat", " ice cream", " building", " house", " freezer", " doll", " art", " computer", " code", " table", " chair", " mouse", " keyboard", " monitor", " processor", " ram", " fruit", " vegetable", " desk", " pen", " pencil", " gun", " death", " paint", " brush", " shoe", " pants", " shirt", " glasses", " glass", " nose", " hair", " head", " eye", " leg", " arm", " sofa", " brain", " neuron", " dog", " parrot", " snake", " python", " hamster", " bird", " mamal", " human", " robot", " AI", " pig", " horse", " reptile", " box", " knee", " shoulder", " toe", " finger", " lamp", " rock", " mountain", " gease", " swan", " boulder", " spear", " phone", " letter", " word", " sentance", " board", " plane", " helicopter", " rocket", " space ship", " space station", " suit", " space suit", " sand", " concrete", " steel", " fire", " engine", " gas", " liquid", " water", " lava", " magma", " volcano", " universe", " galaxy", " star", " wood", " oxygen", " hydrogen", " door", " lazer", " Earth", " hat", " ball", " globe", " sphere", " Sun", " Europe", " Amerika", " moon", " city", " bridge", " village", " fuel", " explosion", " root", " tree", " plastic", " gold", " money", " diamond", " teeth", " glue", " medal", " cup" };
+        public static string[] W_NOUN = [
+            " this", " that", " car", " cat", " ice cream", " building", " house", " freezer", " doll", " art", " computer", " code", " table",
+            " chair", " mouse", " keyboard", " monitor", " processor", " ram", " fruit", " vegetable", " desk", " pen", " pencil", " gun",
+            " death", " paint", " brush", " shoe", " pants", " shirt", " glasses", " glass", " nose", " hair", " head", " eye", " leg", " arm",
+            " sofa", " brain", " neuron", " dog", " parrot", " snake", " python", " hamster", " bird", " mamal", " human", " robot", " AI",
+            " pig", " horse", " reptile", " box", " knee", " shoulder", " toe", " finger", " lamp", " rock", " mountain", " gease", " swan",
+            " boulder", " spear", " phone", " letter", " word", " sentance", " board", " plane", " helicopter", " rocket", " space ship",
+            " space station", " suit", " space suit", " sand", " concrete", " steel", " fire", " engine", " gas", " liquid", " water", " lava",
+            " magma", " volcano", " universe", " galaxy", " star", " wood", " oxygen", " hydrogen", " door", " lazer", " Earth", " hat",
+            " ball", " globe", " sphere", " Sun", " Europe", " Amerika", " moon", " city", " bridge", " village", " fuel", " explosion",
+            " root", " tree", " plastic", " gold", " money", " diamond", " teeth", " glue", " medal", " cup"
+        ];
         /// <summary>
         /// The posible words of type <c>PRONOUN</c>.<br/>
         /// Each element in the array should be an array, where each string coresponds to a sentence time.
         /// </summary>
-        public static string[][] W_PRONOUN = { new string[] { " I am", " I was", " I will be", " I" }, new string[] { " you are", " you were", " you will", " you" }, new string[] { " he is", " he was", " he will", " he" }, new string[] { " she is", " she was", " she will", " she" }, new string[] { " it is", " it was", " it will", " it" }, new string[] { " they are", " they were", " they will", " they" }, new string[] { " them" }, new string[] { " I am", " I was", " I will", " I" }, new string[] { " we are", " we were", " we will", " we" }, new string[] { " us" } };
+        public static string[][] W_PRONOUN = [
+            [" I am", " I was", " I will be", " I"],
+            [" you are", " you were", " you will", " you"],
+            [" he is", " he was", " he will", " he"],
+            [" she is", " she was", " she will", " she"],
+            [" it is", " it was", " it will", " it"],
+            [" they are", " they were", " they will", " they"],
+            [" them"],
+            [" I am", " I was", " I will", " I"],
+            [" we are", " we were", " we will", " we"],
+            [" us"]
+        ];
         /// <summary>
         /// The posible words of type <c>VERB</c>.<br/>
         /// Each element in the array should be an array, where each string coresponds to a sentence time.
         /// </summary>
-        public static string[][] W_VERB = { new string[] { " eating", " ate", " eating", " eat" }, new string[] { " giving", " gave", " giving", " give" }, new string[] { " taking", " took", " will take", " take" }, new string[] { " doing", " did", " will do", " do" }, new string[] { " making", " made", " will make", " make" }, new string[] { " destroy" }, new string[] { " code" }, new string[] { " can" }, new string[] { " slap" }, new string[] { " kick" }, new string[] { " leave" }, new string[] { " go" }, new string[] { " morn" }, new string[] { " capture" }, new string[] { " run" }, new string[] { " walk" }, new string[] { " jog" }, new string[] { " climb" }, new string[] { " move" }, new string[] { " sense" }, new string[] { " hear" }, new string[] { " see" }, new string[] { " taste" }, new string[] { " lick" }, new string[] { " die" }, new string[] { " answer" }, new string[] { " fight" }, new string[] { " travel" }, new string[] { " touch" }, new string[] { " feel" }, new string[] { " live" }, new string[] { " become" }, new string[] { " pray" }, new string[] { " cry" }, new string[] { " clap" }, new string[] { " think" }, new string[] { " kill" }, new string[] { " build" }, new string[] { " laugh" }, new string[] { " train" }, new string[] { " excercierse" }, new string[] { " read" }, new string[] { " teach" }, new string[] { " count" }, new string[] { " begin" }, new string[] { " bend" }, new string[] { " break" }, new string[] { " drink" }, new string[] { " disapear" }, new string[] { " shout" }, new string[] { " transform" }, new string[] { " finish" }, new string[] { " restart" }, new string[] { " imagine" }, new string[] { " create" }, new string[] { " lift" }, new string[] { " bounce" }, new string[] { " fall" }, new string[] { " reach" } };
+        public static string[][] W_VERB = [
+            [" eating", " ate", " eating", " eat"],
+            [" giving", " gave", " giving", " give"],
+            [" taking", " took", " will take", " take"],
+            [" doing", " did", " will do", " do"],
+            [" making", " made", " will make", " make"],
+            [" destroy"], [" code"], [" can"], [" slap"], [" kick"], [" leave"], [" go"], [" morn"], [" capture"], [" run"], [" walk"],
+            [" jog"], [" climb"], [" move"], [" sense"], [" hear"], [" see"], [" taste"], [" lick"], [" die"], [" answer"], [" fight"],
+            [" travel"], [" touch"], [" feel"], [" live"], [" become"], [" pray"], [" cry"], [" clap"], [" think"], [" kill"], [" build"],
+            [" laugh"], [" train"], [" excercierse"], [" read"], [" teach"], [" count"], [" begin"], [" bend"], [" break"], [" drink"],
+            [" disapear"], [" shout"], [" transform"], [" finish"], [" restart"], [" imagine"], [" create"], [" lift"], [" bounce"], [" fall"],
+            [" reach"]
+        ];
         /// <summary>
         /// The posible words of type <c>ADJECTIVE</c>.
         /// </summary>
-        public static string[] W_ADJECTIVE = { " a", " an", " the", " cute", " nice", " wrong", " medium", " big", " small", " hairy", " fat", " fast", " slow", " easy", " hard", " blue", " red", " green", " white", " black", " tall", " short", " wide", " thin", " angry", " happy", " sad", " growling", " surprised", " moved", " transparrent", " soft", " golden", " tough", " conductive", " light", " heavy", " pale", " matt", " shiny", " hungry", " full", " missing", " found", " interesting", " broken", " fixed", " trapped", " freed", " free", " boring", " automatic", " dramatic", " horifying", " agrovating", " stupid", " smart", " dumb" };
+        public static string[] W_ADJECTIVE = [
+            " a", " an", " the", " cute", " nice", " wrong", " medium", " big", " small", " hairy", " fat", " fast", " slow", " easy", " hard",
+            " blue", " red", " green", " white", " black", " tall", " short", " wide", " thin", " angry", " happy", " sad", " growling",
+            " surprised", " moved", " transparrent", " soft", " golden", " tough", " conductive", " light", " heavy", " pale", " matt",
+            " shiny", " hungry", " full", " missing", " found", " interesting", " broken", " fixed", " trapped", " freed", " free", " boring",
+            " automatic", " dramatic", " horifying", " agrovating", " stupid", " smart", " dumb"
+        ];
         /// <summary>
         /// The posible words of type <c>ADVERB</c>.
         /// </summary>
-        public static string[] W_ADVERB = { " then", " quickly", " slowly", " now", " soon", " lately", " easily", " surprisingly", " accidentaly", " worryingly", " gently", " extremely", " carefully", " well", " amazingly", " totaly", " acrobaticly" };
+        public static string[] W_ADVERB = [
+            " then", " quickly", " slowly", " now", " soon", " lately", " easily", " surprisingly", " accidentaly", " worryingly", " gently",
+            " extremely", " carefully", " well", " amazingly", " totaly", " acrobaticly"
+        ];
 
 
         /// <summary>
         /// The posible words to put in the beginning of a word if it's a question.
         /// </summary>
-        public static string[] W_ASK = { " who", " when", " why", " where", " what", " are", " is" };
+        public static string[] W_ASK = [" who", " when", " why", " where", " what", " are", " is"];
         /// <summary>
         /// The posible words to put between some other word types.
         /// </summary>
-        public static string[] W_BETWEEN = { " is", " with", " at", " on", " in", " are", " have" };
+        public static string[] W_BETWEEN = [" is", " with", " at", " on", " in", " are", " have"];
         /// <summary>
         /// The posible strings to end a sentence with.
         /// </summary>
-        public static string[] W_END = { ".", "!", "?", "?!", "!?", " :)", " :(", " :D", " :C", " XD", "", "..." };
+        public static string[] W_END = [".", "!", "?", "?!", "!?", " :)", " :(", " :D", " :C", " XD", "", "..."];
         /// <summary>
         /// The posible strings to end a question with.
         /// </summary>
-        public static string[] W_END_ASK = { "?", "?!", "!?" };
+        public static string[] W_END_ASK = ["?", "?!", "!?"];
 
         /// <summary>
         /// A dictionary conatining the sentence structure:<br/>
@@ -58,32 +101,37 @@ namespace RandomSentence
         /// </summary>
         public static Dictionary<WordType, WordType[]> SENTENCE_STRUCTURE = new()
         {
-            [WordType.NOUN] = new WordType[] { WordType.VERB, WordType.BETWEEN },
-            [WordType.PRONOUN] = new WordType[] { WordType.VERB, WordType.BETWEEN },
-            [WordType.VERB] = new WordType[] { WordType.NOUN, WordType.VERB, WordType.BETWEEN },
-            [WordType.ADJECTIVE] = new WordType[] { WordType.NOUN },
-            [WordType.ADVERB] = new WordType[] { WordType.VERB, WordType.ADJECTIVE, WordType.ADVERB },
-            [WordType.ASK] = new WordType[] { WordType.ADJECTIVE, WordType.BETWEEN },
-            [WordType.BETWEEN] = new WordType[] { WordType.NOUN, WordType.VERB, WordType.ADJECTIVE },
-            [WordType.END] = new WordType[] { WordType.END },
-            [WordType.END_ASK] = new WordType[] { WordType.END_ASK },
-            [WordType.BEGINNING] = new WordType[] { WordType.NOUN, WordType.PRONOUN, WordType.VERB, WordType.ADJECTIVE, WordType.ADVERB, WordType.ASK }
+            [WordType.NOUN] = [WordType.VERB, WordType.BETWEEN],
+            [WordType.PRONOUN] = [WordType.VERB, WordType.BETWEEN],
+            [WordType.VERB] = [WordType.NOUN, WordType.VERB, WordType.BETWEEN],
+            [WordType.ADJECTIVE] = [WordType.NOUN],
+            [WordType.ADVERB] = [WordType.VERB, WordType.ADJECTIVE, WordType.ADVERB],
+            [WordType.ASK] = [WordType.ADJECTIVE, WordType.BETWEEN],
+            [WordType.BETWEEN] = [WordType.NOUN, WordType.VERB, WordType.ADJECTIVE],
+            [WordType.END] = [WordType.END],
+            [WordType.END_ASK] = [WordType.END_ASK],
+            [WordType.BEGINNING] = [WordType.NOUN, WordType.PRONOUN, WordType.VERB, WordType.ADJECTIVE, WordType.ADVERB, WordType.ASK]
         };
 
         /// <summary>
         /// The type of words that sentences should end on.
         /// </summary>
-        public static WordType[] ENDING_WORD = { WordType.NOUN, WordType.VERB };
+        public static WordType[] ENDING_WORD = [WordType.NOUN, WordType.VERB];
 
         /// <summary>
         /// The posible sentence times, in a sentence.<br/>
         /// Determines witch word to pick in 2D word arrays, acording to the value of the enum
         /// </summary>
-        public static SentenceTime[] SENTANCE_TIMES = { SentenceTime.PRESENT, SentenceTime.PAST, SentenceTime.FUTURE, SentenceTime.CONTINOUS };
+        public static SentenceTime[] SENTANCE_TIMES = [SentenceTime.PRESENT, SentenceTime.PAST, SentenceTime.FUTURE, SentenceTime.CONTINOUS];
         #endregion
 
         #region Private statics
-        private static readonly char[] DEFAULT_LETTERS = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
+        private static readonly char[] DEFAULT_LETTERS = [
+            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+            ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '
+        ];
+
         private static readonly IPseudoRandomGenerator DEFAULT_GENERATOR = new SplittableRandom();
 
         private static Dictionary<WordType, object[]> WORDS = new()
@@ -111,7 +159,12 @@ namespace RandomSentence
         /// By default, it uses all english lower and uppder case letters, and space.</param>
         /// <param name="randomGenerator">The generator to use, for generating the letters.</param>
         /// <returns></returns>
-        public static string UnstructuredRandom(long minLength = 1, long maxLength = 1000, char[]? letters = null, IPseudoRandomGenerator? randomGenerator = null)
+        public static string UnstructuredRandom(
+            long minLength = 1,
+            long maxLength = 1000,
+            char[]? letters = null,
+            IPseudoRandomGenerator? randomGenerator = null
+        )
         {
             letters ??= DEFAULT_LETTERS;
             randomGenerator ??= DEFAULT_GENERATOR;
@@ -135,7 +188,13 @@ namespace RandomSentence
         /// <param name="generateEnd">If true, the sentance will have an ending punctuation at the end.</param>
         /// <param name="randomGenerator">The generator to use, for generating the words.</param>
         /// <returns></returns>
-        public static string StructuredSentence(long minLength = 1, long maxLength = 100, bool endOnGoodWord = true, bool generateEnd = true, IPseudoRandomGenerator? randomGenerator = null)
+        public static string StructuredSentence(
+            long minLength = 1,
+            long maxLength = 100,
+            bool endOnGoodWord = true,
+            bool generateEnd = true,
+            IPseudoRandomGenerator? randomGenerator = null
+        )
         {
             randomGenerator ??= DEFAULT_GENERATOR;
 
@@ -152,7 +211,7 @@ namespace RandomSentence
                     // beginning
                     var (previousType, word) = GetNextWord(randomGenerator, WordType.BEGINNING, sentenceType);
                     beginningWord = previousType;
-                    if (word.StartsWith(" "))
+                    if (word.StartsWith(' '))
                     {
                         word = word[1..];
                     }
@@ -210,7 +269,11 @@ namespace RandomSentence
         /// <param name="previousType">The type of the previous word.</param>
         /// <param name="sentenceType">The type of the sentence.</param>
         /// <returns></returns>
-        private static (WordType wordType, string word) GetNextWord(IPseudoRandomGenerator randomGenerator, WordType previousType, int sentenceType = 0)
+        private static (WordType wordType, string word) GetNextWord(
+            IPseudoRandomGenerator randomGenerator,
+            WordType previousType,
+            int sentenceType = 0
+        )
         {
             // next word type
             var typeNumber = randomGenerator.GenerateInRange(0, SENTENCE_STRUCTURE[previousType].LongLength - 1);
@@ -218,7 +281,7 @@ namespace RandomSentence
             // next word
             var word = WORDS[wordType][randomGenerator.GenerateInRange(0, WORDS[wordType].LongLength - 1)];
             string wordString;
-            if (word is string[] wordList && wordList.Any())
+            if (word is string[] wordList && wordList.Length != 0)
             {
                 if (wordList.Length > sentenceType)
                 {
