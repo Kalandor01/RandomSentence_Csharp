@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>Random sentence</Title>
-    <Version>1.1.1.3</Version>
+    <Version>1.1.1.4</Version>
     <Authors>Kalandor01</Authors>
     <Copyright>MIT</Copyright>
     <PackageProjectUrl>https://github.com/Kalandor01/RandomSentence_CSharp</PackageProjectUrl>
@@ -29,8 +29,8 @@ Playing sounds, not on Windows will result in a NotSupportedException.</Descript
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NPrng" Version="1.0.0.2" />
-    <PackageReference Include="System.Windows.Extensions" Version="7.0.0" />
+    <PackageReference Include="NPrng" Version="1.0.0.3" />
+    <PackageReference Include="System.Windows.Extensions" Version="9.0.0" />
   </ItemGroup>
 
 </Project>

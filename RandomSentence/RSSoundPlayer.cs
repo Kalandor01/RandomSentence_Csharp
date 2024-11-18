@@ -1,14 +1,15 @@
 ﻿using System.Media;
 using System.Runtime.InteropServices;
+using System.Runtime.Versioning;
 
 namespace RandomSentence
 {
     /// <summary>
     /// Object for playing a sound.
     /// </summary>
+    [SupportedOSPlatform("windows")]
     public class RSSoundPlayer
     {
-
         #region Public fields
         /// <summary>
         /// Whether to wait for the sound to finish playing, before continuing.
