@@ -1,10 +1,7 @@
-﻿using System.Runtime.InteropServices;
-
-namespace RandomSentence
+﻿namespace RandomSentence
 {
     /// <summary>
-    /// Object for writing out text letter-by-letter, optionaly with sound, with a lot of controll.<br/>
-    /// If the OS is not Windows, the sound will not play (by deffault).
+    /// Object for writing out text letter-by-letter, optionaly with sound, with a lot of controll.
     /// </summary>
     public class Typewriter
     {
@@ -18,23 +15,17 @@ namespace RandomSentence
         /// </summary>
         public int delay;
         /// <summary>
-        /// If false, <c>delay</c> is how long it should take to write out the entire text.
+        /// If false, <see cref="delay"/> is how long it should take to write out the entire text.
         /// </summary>
         public bool isDelayPerLetter;
         /// <summary>
-        /// A sound object.<br/>
-        /// It will play before the text starts printing out.
+        /// The sound to play before the text starts printing out.
         /// </summary>
-        public RSSoundPlayer? soundBegin;
+        public ISimpleSoundPlayer? soundBegin;
         /// <summary>
-        /// A sound object.<br/>
-        /// It will play every time a letter is printed.
+        /// The sound to play every time a letter is printed.
         /// </summary>
-        public RSSoundPlayer? sound;
-        /// <summary>
-        /// Whether the object should throw a <c>NotSupportedException</c>, if the platform is not Windows, or just not play the sound.
-        /// </summary>
-        public bool throwExeption;
+        public ISimpleSoundPlayer? sound;
         #endregion
 
         #region Constructors
@@ -46,25 +37,19 @@ namespace RandomSentence
         /// <param name="isDelayPerLetter"><inheritdoc cref="isDelayPerLetter" path="//summary"/></param>
         /// <param name="soundBegin"><inheritdoc cref="soundBegin" path="//summary"/></param>
         /// <param name="sound"><inheritdoc cref="sound" path="//summary"/></param>
-        /// <param name="throwExeption"><inheritdoc cref="throwExeption" path="//summary"/></param>
-        /// <exception cref="PlatformNotSupportedException">Exeption thrown if the OS isn't Windows, and <c>throwExeption</c> is true.</exception>
-        public Typewriter(string text, int delay = 4, bool isDelayPerLetter = true, RSSoundPlayer? soundBegin = null, RSSoundPlayer? sound = null, bool throwExeption = false)
+        public Typewriter(
+            string text,
+            int delay = 4,
+            bool isDelayPerLetter = true,
+            ISimpleSoundPlayer? soundBegin = null,
+            ISimpleSoundPlayer? sound = null
+        )
         {
-            if (
-                !RuntimeInformation.IsOSPlatform(OSPlatform.Windows) &&
-                (soundBegin is not null || sound is not null) &&
-                throwExeption
-            )
-            {
-                throw new PlatformNotSupportedException("Sounds can only be played os Windows.");
-            }
-
             this.text = text;
             this.delay = delay;
             this.isDelayPerLetter = isDelayPerLetter;
             this.soundBegin = soundBegin;
             this.sound = sound;
-            this.throwExeption = throwExeption;
         }
         #endregion
 
@@ -72,52 +57,26 @@ namespace RandomSentence
         /// <summary>
         /// Writes out the text with the settings from the object.
         /// </summary>
-        /// <exception cref="PlatformNotSupportedException">Exeption thrown if the OS isn't Windows, and <c>throwExeption</c> is true.</exception>
         public void Write()
         {
-            // sound?
-            var soundError = false;
-            if (
-                !RuntimeInformation.IsOSPlatform(OSPlatform.Windows) &&
-                (soundBegin is not null || sound is not null)
-            )
-            {
-                if (throwExeption)
-                {
-                    throw new PlatformNotSupportedException("Sounds can only be played os Windows.");
-                }
-                else
-                {
-                    soundError = true;
-                }
-            }
+            soundBegin?.Play();
 
-            // begin sound
-            if (soundBegin is not null && !soundError)
-            {
-                soundBegin.Play();
-            }
-
-            // typewriter
+            var soundDelay = isDelayPerLetter ? delay : delay / text.Length;
             for (var x = 0; x < text.Length; x++)
             {
                 Console.Write(text[x]);
                 if (x != text.Length - 1)
                 {
-                    // sound
-                    if (sound is not null && !soundError)
-                    {
-                        sound.Play();
-                    }
+                    sound?.Play();
 
                     // delay type
                     if (isDelayPerLetter)
                     {
-                        Thread.Sleep(delay);
+                        Thread.Sleep(soundDelay);
                     }
                     else
                     {
-                        Thread.Sleep(delay / text.Length);
+                        Thread.Sleep(soundDelay);
                     }
                 }
             }
